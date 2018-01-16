@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FestEC.iml" filepath="$PROJECT_DIR$/FestEC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mary-annotions/mary-annotions.iml" filepath="$PROJECT_DIR$/mary-annotions/mary-annotions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mary-compiler/mary-compiler.iml" filepath="$PROJECT_DIR$/mary-compiler/mary-compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mary-core/mary-core.iml" filepath="$PROJECT_DIR$/mary-core/mary-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mary-ec/mary-ec.iml" filepath="$PROJECT_DIR$/mary-ec/mary-ec.iml" />
+    </modules>
+  </component>
+</project>
