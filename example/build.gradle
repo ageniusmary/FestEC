@@ -20,6 +20,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation project(':mary-ec')
     annotationProcessor project(':mary-compiler')
+    compile project(path: ':mary-core')
 }
