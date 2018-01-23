@@ -3,6 +3,7 @@ package com.example.mary.festec;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.mary.mary.delegates.MaryDelegate;
 import com.example.mary.mary.net.RestClient;
@@ -26,17 +27,16 @@ public class ExampleDelegate extends MaryDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-
+        testRestClient();
     }
 
     private void testRestClient(){
         RestClient.builder()
-                .url("")
-                .params("","")
+                .url("http://news.baidu.com")
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-
+                        Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .failure(new IFailure() {
@@ -46,11 +46,11 @@ public class ExampleDelegate extends MaryDelegate {
                     }
                 })
                 .error(new IError() {
-                    @Override
                     public void onError(int code, String msg) {
 
                     }
                 })
-                .build();
+                .build()
+                .get();
     }
 }

@@ -4,11 +4,14 @@ import com.example.mary.mary.net.callback.IError;
 import com.example.mary.mary.net.callback.IFailure;
 import com.example.mary.mary.net.callback.IRequest;
 import com.example.mary.mary.net.callback.ISuccess;
+import com.example.mary.mary.net.callback.RequestCallbacks;
 
-import java.util.Map;
 import java.util.WeakHashMap;
 
 import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.http.Url;
 
 /**
  * 项目名:    FestEC
@@ -48,4 +51,58 @@ public class RestClient {
     public static RestClientBuilder builder(){
         return new RestClientBuilder();
     }
+
+    private void request(HttpMethod method){
+        final RestService service = RestCreator.getRestService();
+        Call<String> call = null;
+
+        if(REQUEST != null){
+            REQUEST.onRequestStart();
+        }
+
+        switch (method){
+            case GET:
+                call = service.get(URL,PARAMS);
+                break;
+            case POST:
+                call = service.post(URL,PARAMS);
+                break;
+            case PUT:
+                call = service.put(URL,PARAMS);
+                break;
+            case DELETE:
+                call = service.delete(URL,PARAMS);
+                break;
+            default:
+                break;
+        }
+
+        if(call!=null){
+            //execute会在主线程上执行（不推荐）  enqueue在后台另起的线程上执行，不会影响到ui线程（推荐）
+            call.enqueue(getRequestCallback());
+        }
+    }
+
+    private Callback<String> getRequestCallback(){
+        return new RequestCallbacks(
+                REQUEST,
+                SUCCESS,
+                FAILURE,
+                ERROR
+        );
+    }
+
+    public final void get(){
+        request(HttpMethod.GET);
+    }
+    public final void post(){
+        request(HttpMethod.POST);
+    }
+    public final void put(){
+        request(HttpMethod.PUT);
+    }
+    public final void delete(){
+        request(HttpMethod.DELETE);
+    }
+
 }

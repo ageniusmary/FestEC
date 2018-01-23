@@ -21,17 +21,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RestCreator {
 
     private static final class ParamsHodler{
-        public static final WeakHashMap<String,Object> PARAMS = new WeakHashMap<>();
+        private static final WeakHashMap<String,Object> PARAMS = new WeakHashMap<>();
     }
     public static WeakHashMap<String,Object> getParams(){
         return ParamsHodler.PARAMS;
     }
 
-    public static RestService getRestService(){
-        return RestServiceHolder.REST_SERVICE;
-    }
     private static final class RetrofitHolder {
-        private static final String BASE_URL = (String) Mary.getConfigurations().get(ConfigType.API_HOST);
+        private static final String BASE_URL = (String) Mary.getConfigurations().get(ConfigType.API_HOST.name());
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
@@ -51,4 +48,9 @@ public class RestCreator {
         private static final RestService REST_SERVICE =
                 RetrofitHolder.RETROFIT_CLIENT.create(RestService.class);
     }
+
+    public static RestService getRestService(){
+        return RestServiceHolder.REST_SERVICE;
+    }
+
 }
