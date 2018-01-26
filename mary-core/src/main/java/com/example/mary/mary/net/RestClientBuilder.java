@@ -8,6 +8,7 @@ import com.example.mary.mary.net.callback.IRequest;
 import com.example.mary.mary.net.callback.ISuccess;
 import com.example.mary.mary.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -33,6 +34,7 @@ public class RestClientBuilder {
     private  RequestBody mBody = null;
     private LoaderStyle mLoaderStyle = null;
     private Context mContext = null;
+    private File mfile;
 
     RestClientBuilder(){
     }
@@ -47,6 +49,15 @@ public class RestClientBuilder {
     }
     public final RestClientBuilder params(String key,Object value){
         PARAMS.put(key,value);
+        return this;
+    }
+
+    public final RestClientBuilder file(File file){
+        this.mfile = file;
+        return this;
+    }
+    public final RestClientBuilder file(String file){
+        this.mfile = new File(file);
         return this;
     }
 
@@ -87,6 +98,6 @@ public class RestClientBuilder {
     }
 
     public final RestClient build(){
-        return new RestClient(mUrl,PARAMS,mIRequest,mISuccess,mIFailure,mIError,mBody,mContext,mLoaderStyle);
+        return new RestClient(mUrl,PARAMS,mIRequest,mISuccess,mIFailure,mIError,mBody,mContext,mfile,mLoaderStyle);
     }
 }
