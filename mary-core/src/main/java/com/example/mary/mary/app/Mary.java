@@ -26,4 +26,5 @@ public final class Mary {
     public static Context getApplication(){
         return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
     }
+
 }
