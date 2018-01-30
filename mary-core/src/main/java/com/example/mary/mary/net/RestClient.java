@@ -7,6 +7,7 @@ import com.example.mary.mary.net.callback.IFailure;
 import com.example.mary.mary.net.callback.IRequest;
 import com.example.mary.mary.net.callback.ISuccess;
 import com.example.mary.mary.net.callback.RequestCallbacks;
+import com.example.mary.mary.net.download.DownloadHandler;
 import com.example.mary.mary.ui.LoaderStyle;
 import com.example.mary.mary.ui.MaryLoader;
 
@@ -41,8 +42,15 @@ public class RestClient {
     private final File FILE;
     private final Context CONTEXT;
 
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
+
     public RestClient(String url,
                       WeakHashMap<String, Object> params,
+                      String download_dir,
+                      String extension,
+                      String name,
                       IRequest request,
                       ISuccess success,
                       IFailure failure,
@@ -53,6 +61,9 @@ public class RestClient {
                       LoaderStyle loaderStyle) {
         this.URL = url;
         PARAMS.putAll(params);
+        this.DOWNLOAD_DIR = download_dir;
+        this.EXTENSION = extension;
+        this.NAME = name;
         this.REQUEST = request;
         this.SUCCESS = success;
         this.FAILURE = failure;
@@ -103,8 +114,8 @@ public class RestClient {
                 final RequestBody requestBody = RequestBody.create(
                         MediaType.parse(MultipartBody.FORM.toString()), FILE);
                 final MultipartBody.Part body =
-                        MultipartBody.Part.createFormData("file",FILE.getName(),requestBody);
-                call = RestCreator.getRestService().upload(URL,body);
+                        MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
+                call = RestCreator.getRestService().upload(URL, body);
                 break;
             default:
                 break;
@@ -156,6 +167,11 @@ public class RestClient {
 
     public final void delete() {
         request(HttpMethod.DELETE);
+    }
+
+    public final void download() {
+        new DownloadHandler(URL, REQUEST, DOWNLOAD_DIR,
+                EXTENSION, NAME, SUCCESS, FAILURE, ERROR).handleDownload();
     }
 
 }
