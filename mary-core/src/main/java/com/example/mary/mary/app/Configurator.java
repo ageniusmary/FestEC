@@ -7,6 +7,8 @@ import com.joanzapata.iconify.Iconify;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * 项目名:    FestEC
  * 包名：     com.example.mary.mary.app
@@ -17,11 +19,12 @@ import java.util.HashMap;
 
 public class Configurator {
 
-    private static final HashMap<String,Object> MARY_CONFIGS = new HashMap<>();
+    private static final HashMap<Object,Object> MARY_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+    private static final  ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator(){
-        MARY_CONFIGS.put(ConfigType.CONFIG_READY.name(),false);
+        MARY_CONFIGS.put(configKeys.CONFIG_READY.name(),false);
     }
 
     //单例  线程安全的懒汉模式
@@ -32,16 +35,20 @@ public class Configurator {
         return Holder.INSTANCE;
     }
 
-    final HashMap<String,Object> getMaryConfigs(){
+    final HashMap<Object,Object> getMaryConfigs(){
         return MARY_CONFIGS;
     }
 
     public final void configure(){
         initIcons();
-        MARY_CONFIGS.put(ConfigType.CONFIG_READY.name(),true);
+        MARY_CONFIGS.put(configKeys.CONFIG_READY.name(),true);
     }
     public final Configurator withApihost(String host){
-        MARY_CONFIGS.put(ConfigType.API_HOST.name(),host);
+        MARY_CONFIGS.put(configKeys.API_HOST.name(),host);
+        return this;
+    }
+    public final Configurator withLoaderDelayed(long delayed){
+        MARY_CONFIGS.put(configKeys.LOADER_DELAYED,delayed);
         return this;
     }
 
@@ -59,14 +66,26 @@ public class Configurator {
         return this;
     }
 
+    public final Configurator withInterceptor(Interceptor interceptor){
+        INTERCEPTORS.add(interceptor);
+        MARY_CONFIGS.put(configKeys.INTERCEPTOR,INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors){
+        INTERCEPTORS.addAll(interceptors);
+        MARY_CONFIGS.put(configKeys.INTERCEPTOR,INTERCEPTORS);
+        return this;
+    }
+
     private void checkConfiguration(){
-        final boolean isReady = (boolean) MARY_CONFIGS.get(ConfigType.CONFIG_READY.name());
+        final boolean isReady = (boolean) MARY_CONFIGS.get(configKeys.CONFIG_READY.name());
         if(!isReady){
-            throw new RuntimeException("configuration is not ready,call configure");
+            throw new RuntimeException ("configuration is not ready,call configure");
         }
     }
 
-    final <T> T getconfiguration(Enum<ConfigType> key){
+    final <T> T getConfiguration(Object key){
         checkConfiguration();
         return (T) MARY_CONFIGS.get(key);
     }

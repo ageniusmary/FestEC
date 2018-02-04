@@ -8,7 +8,7 @@ package com.example.mary.mary.app;
  * 描述：     整个程序唯一的单例
  */
 
-public enum ConfigType {
+public enum configKeys {
     //网络请求域名
     API_HOST,
     //全局的上下文
@@ -16,5 +16,7 @@ public enum ConfigType {
     //控制初始化或者配置完成了没有
     CONFIG_READY,
     //字体什么的
-    ICON
+    ICON,
+    LOADER_DELAYED,
+    INTERCEPTOR
 }

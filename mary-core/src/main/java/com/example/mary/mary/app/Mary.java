@@ -2,6 +2,7 @@ package com.example.mary.mary.app;
 
 import android.content.Context;
 
+import java.security.Key;
 import java.util.HashMap;
 
 /**
@@ -15,16 +16,22 @@ import java.util.HashMap;
 public final class Mary {
 
     public static Configurator init(Context context){
-        getConfigurations().put(ConfigType.APPLICATION_CONTEXT.name(),context.getApplicationContext());
+        Configurator.getInstance()
+                .getMaryConfigs()
+                .put(configKeys.APPLICATION_CONTEXT, context.getApplicationContext());
+        return Configurator.getInstance();
+    }
+    public static Configurator getConfigurator() {
         return Configurator.getInstance();
     }
 
-    public static HashMap<String,Object> getConfigurations(){
-        return Configurator.getInstance().getMaryConfigs();
+    public static <T> T getConfiguration(Object key) {
+        return getConfigurator().getConfiguration(key);
     }
 
-    public static Context getApplication(){
-        return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
+    public static Context getApplicationContext() {
+        return getConfiguration(configKeys.APPLICATION_CONTEXT);
     }
+
 
 }

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.mary.mary.app.Mary;
 import com.example.mary.mary.ec.icon.FontEcModule;
+import com.example.mary.mary.net.Interceptors.DebugInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 /**
@@ -21,7 +22,9 @@ public class ExampleApp extends Application {
         Mary.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
+                .withLoaderDelayed(1000)
                 .withApihost("http://127.0.0.1/")
+                .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
     }
 }

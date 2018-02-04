@@ -16,13 +16,13 @@ import com.example.mary.mary.app.Mary;
 public class DimenUtil {
     //获取屏幕宽度
     public static int getScreenWidth(){
-        final Resources resources = Mary.getApplication().getResources();
+        final Resources resources = Mary.getApplicationContext().getResources();
         final DisplayMetrics dm = resources.getDisplayMetrics();
         return dm.widthPixels;
     }
     //获取屏幕高度
     public static int getScreenHeight(){
-        final Resources resources = Mary.getApplication().getResources();
+        final Resources resources = Mary.getApplicationContext().getResources();
         final DisplayMetrics dm = resources.getDisplayMetrics();
         return dm.heightPixels;
     }
