@@ -1,6 +1,5 @@
-package com.example.mary.mary.ui;
+package com.example.mary.mary.ui.loader;
 
-import android.app.Dialog;
 import android.content.Context;
 
 import android.support.v7.app.AppCompatDialog;
@@ -9,7 +8,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.mary.mary.R;
-import com.example.mary.mary.util.DimenUtil;
+import com.example.mary.mary.ui.loader.LoaderCreator;
+import com.example.mary.mary.ui.loader.LoaderStyle;
+import com.example.mary.mary.util.dimen.DimenUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;

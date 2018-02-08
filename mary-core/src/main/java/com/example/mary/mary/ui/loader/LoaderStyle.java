@@ -1,4 +1,4 @@
-package com.example.mary.mary.ui;
+package com.example.mary.mary.ui.loader;
 
 /**
  * 项目名:    FestEC

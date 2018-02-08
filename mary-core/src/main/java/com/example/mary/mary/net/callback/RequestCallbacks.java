@@ -3,8 +3,8 @@ package com.example.mary.mary.net.callback;
 
 import android.os.Handler;
 
-import com.example.mary.mary.ui.LoaderStyle;
-import com.example.mary.mary.ui.MaryLoader;
+import com.example.mary.mary.ui.loader.LoaderStyle;
+import com.example.mary.mary.ui.loader.MaryLoader;
 
 
 import retrofit2.Call;

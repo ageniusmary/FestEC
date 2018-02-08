@@ -1,4 +1,4 @@
-package com.example.mary.mary.ui;
+package com.example.mary.mary.ui.loader;
 
 import android.content.Context;
 

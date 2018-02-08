@@ -6,10 +6,9 @@ import com.example.mary.mary.net.callback.IError;
 import com.example.mary.mary.net.callback.IFailure;
 import com.example.mary.mary.net.callback.IRequest;
 import com.example.mary.mary.net.callback.ISuccess;
-import com.example.mary.mary.ui.LoaderStyle;
+import com.example.mary.mary.ui.loader.LoaderStyle;
 
 import java.io.File;
-import java.util.Map;
 import java.util.WeakHashMap;
 
 import okhttp3.MediaType;

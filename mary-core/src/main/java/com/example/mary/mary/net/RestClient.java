@@ -8,8 +8,8 @@ import com.example.mary.mary.net.callback.IRequest;
 import com.example.mary.mary.net.callback.ISuccess;
 import com.example.mary.mary.net.callback.RequestCallbacks;
 import com.example.mary.mary.net.download.DownloadHandler;
-import com.example.mary.mary.ui.LoaderStyle;
-import com.example.mary.mary.ui.MaryLoader;
+import com.example.mary.mary.ui.loader.LoaderStyle;
+import com.example.mary.mary.ui.loader.MaryLoader;
 
 import java.io.File;
 import java.util.WeakHashMap;

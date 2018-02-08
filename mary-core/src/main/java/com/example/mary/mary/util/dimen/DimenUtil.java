@@ -1,4 +1,4 @@
-package com.example.mary.mary.util;
+package com.example.mary.mary.util.dimen;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
