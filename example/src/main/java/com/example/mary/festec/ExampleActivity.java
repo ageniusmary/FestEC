@@ -11,6 +11,7 @@ import com.example.mary.mary.app.Mary;
 import com.example.mary.mary.delegates.MaryDelegate;
 import com.example.mary.mary.ec.launcher.LauncherScrollDelegate;
 import com.example.mary.mary.ec.launcher.launcherDelegate;
+import com.example.mary.mary.ec.sign.SignUpDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
@@ -25,6 +26,6 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public MaryDelegate setRootDelegate() {
-        return new launcherDelegate();
+        return new SignUpDelegate();
     }
 }
